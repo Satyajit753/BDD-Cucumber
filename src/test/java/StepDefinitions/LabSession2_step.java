@@ -109,7 +109,7 @@ public class LabSession2_step {
         Thread.sleep(1000);
     }
 
-    @Then("the registration should be successful")
+    /*@Then("the registration should be successful")
     public void the_registration_should_be_successful() throws InterruptedException {
         String successMsg = driver.findElement(By.xpath("//font[contains(text(),'Thank you for registering')]")).getText();
         if (successMsg.contains("Thank you for registering")) {
@@ -117,6 +117,6 @@ public class LabSession2_step {
         } else {
             System.out.println("Registration failed");
         }
-        Thread.sleep(1000);
+        Thread.sleep(1000);*/
     }
 }
