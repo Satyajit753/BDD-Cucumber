@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="functional" verbose="1">
+	<parameter name="browser" value="edge" />
+	<parameter name="platform" value="windows" />
+	<test name="Functional testcases">
+		<classes>
+			<class name="TestRunner.MyTestRunner" />
+			
+		</classes>
+	</test>
+</suite>
