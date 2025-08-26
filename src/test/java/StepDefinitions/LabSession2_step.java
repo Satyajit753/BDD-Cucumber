@@ -1,18 +1,18 @@
 package StepDefinitions;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import Hooks.Hooks;
 import io.cucumber.java.en.*;
 import utils.DriverFactory;
 
 public class LabSession2_step {
 
-	 private WebDriver driver = DriverFactory.getDriver(); 
-
+    private WebDriver driver = DriverFactory.getDriver();
 
     @Given("the user is on the registration page")
     public void the_user_is_on_the_registration_page() throws InterruptedException {
@@ -97,10 +97,17 @@ public class LabSession2_step {
 
     @When("the user clicks on registration submit button")
     public void the_user_clicks_on_registration_submit_button() throws InterruptedException {
-        driver.findElement(By.name("submit")).click();
+        WebElement submitBtn = driver.findElement(By.name("submit"));
+        try {
+            submitBtn.click();
+            System.out.println("Submit button clicked normally");
+        } catch (ElementClickInterceptedException e) {
+            // fallback to JavaScript click
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
+            System.out.println("Submit button clicked using JavaScript due to interception");
+        }
         Thread.sleep(1000);
     }
-
 
     @Then("the registration should be successful")
     public void the_registration_should_be_successful() throws InterruptedException {
